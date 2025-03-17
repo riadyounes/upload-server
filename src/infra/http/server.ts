@@ -10,6 +10,7 @@ import {
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod'
+import { getUploadsRoute } from './routes/get-uploads'
 import { transformSwaggerSchema } from './transform-swagger-schema'
 
 const server = fastify()
@@ -47,6 +48,7 @@ server.register(fastifySwaggerUi, {
   routePrefix: '/docs',
 })
 
+server.register(getUploadsRoute)
 server.register(uploadImageRoute)
 
 server.listen({ port: 3333, host: '0.0.0.0' }).then(() => {
